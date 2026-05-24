@@ -2,8 +2,7 @@ export type Orientation = "vertical" | "landscape";
 export type Category =
   | "Showreel"
   | "Short Film"
-  | "Series"
-  | "Music Video"
+  | "Vertical Drama"
   | "Commercial"
   | "Experimental";
 
@@ -37,6 +36,19 @@ export const works: Work[] = [
     featured: true,
   },
   {
+    slug: "mahashakti",
+    title: "Mahashakti",
+    category: "Short Film",
+    year: 2026,
+    durationSec: 451,
+    orientation: "landscape",
+    resolution: "1920×1080",
+    tagline: "The armory speaks before the warrior does.",
+    description:
+      "A short on the breath before the war — forged steel, gods listening, a body finding its weight. Built in latent space with a single performer and a thousand iterations.",
+    tools: ["Runway", "Kling", "Seedance", "DaVinci Resolve"],
+  },
+  {
     slug: "arrival",
     title: "Arrival — Day Two",
     category: "Short Film",
@@ -50,35 +62,22 @@ export const works: Work[] = [
     tools: ["Runway Gen-3", "Topaz", "Resolve"],
   },
   {
-    slug: "bird-woman",
-    title: "Bird Woman",
-    category: "Experimental",
-    year: 2025,
-    durationSec: 96,
-    orientation: "landscape",
-    resolution: "3840×2160",
-    tagline: "A figure between feather and flesh.",
-    description:
-      "A sequence study exploring metamorphosis in latent space. Hand-keyed motion brushed against model hallucination.",
-    tools: ["Kling 1.6", "Magnific", "After Effects"],
-  },
-  {
     slug: "ganjahan",
     title: "GanJahan",
-    category: "Music Video",
+    category: "Short Film",
     year: 2025,
     durationSec: 137,
     orientation: "landscape",
     resolution: "1920×1080",
     tagline: "A green and gold incantation.",
     description:
-      "Music video built around a single chant. Frames generated, treated, then re-projected onto the soundtrack until the cut could feel the beat.",
+      "Built around a single chant — frames generated, treated, then re-projected onto the soundtrack until the cut could feel the beat.",
     tools: ["Runway", "Suno", "Premiere"],
   },
   {
     slug: "african-heat-ep1",
     title: "African Heat — Ep. 1",
-    category: "Series",
+    category: "Vertical Drama",
     year: 2025,
     durationSec: 122,
     orientation: "vertical",
@@ -91,7 +90,7 @@ export const works: Work[] = [
   {
     slug: "falling-in-love-vampire",
     title: "Falling in Love with a Vampire",
-    category: "Short Film",
+    category: "Vertical Drama",
     year: 2025,
     durationSec: 99,
     orientation: "vertical",
@@ -104,27 +103,27 @@ export const works: Work[] = [
   {
     slug: "heist-goes-wrong",
     title: "The Heist Goes Wrong",
-    category: "Short Film",
+    category: "Commercial",
     year: 2025,
     durationSec: 32,
     orientation: "vertical",
     resolution: "1080×1920",
     tagline: "Thirty-two seconds. One bad plan.",
     description:
-      "A micro-thriller designed for the scroll. Three beats, one twist, no fat.",
+      "A micro-thriller spot designed for the scroll. Three beats, one twist, no fat.",
     tools: ["Runway", "ElevenLabs"],
   },
   {
     slug: "outfit-change",
     title: "Outfit Change",
-    category: "Experimental",
+    category: "Commercial",
     year: 2025,
     durationSec: 23,
     orientation: "vertical",
     resolution: "1080×1920",
     tagline: "A wardrobe in twenty-three seconds.",
     description:
-      "An exercise in identity loops. Each change of cloth a small reincarnation.",
+      "An exercise in identity loops — each change of cloth a small reincarnation. Built as a fashion-vertical the algorithm can't scroll past.",
     tools: ["Kling", "Magnific"],
   },
   {
@@ -153,6 +152,19 @@ export const works: Work[] = [
       "Sibling spot to Uppeel 01 — same world, different angle, sharper hook.",
     tools: ["Runway", "Suno", "After Effects"],
   },
+  {
+    slug: "bird-woman",
+    title: "Bird Woman",
+    category: "Experimental",
+    year: 2025,
+    durationSec: 96,
+    orientation: "landscape",
+    resolution: "3840×2160",
+    tagline: "A figure between feather and flesh.",
+    description:
+      "A sequence study exploring metamorphosis in latent space. Hand-keyed motion brushed against model hallucination.",
+    tools: ["Kling 1.6", "Magnific", "After Effects"],
+  },
 ];
 
 export function getWork(slug: string): Work | undefined {
@@ -166,3 +178,33 @@ export function formatDuration(sec: number): string {
   const s = Math.round(sec % 60);
   return `${m}:${s.toString().padStart(2, "0")}`;
 }
+
+/**
+ * Roman-numeral display for category sections — borrowed from print editorial
+ * masthead conventions. Lets the design lean on typography for visual hierarchy
+ * instead of color-coded chips.
+ */
+export const CATEGORY_NUMERAL: Record<Category, string> = {
+  Showreel: "00",
+  "Short Film": "I",
+  "Vertical Drama": "II",
+  Commercial: "III",
+  Experimental: "IV",
+};
+
+/** Short editorial blurb shown under each category section heading. */
+export const CATEGORY_KICKER: Record<Category, string> = {
+  Showreel: "The reel.",
+  "Short Film": "Long-form, narrative cuts.",
+  "Vertical Drama": "For the phone, scored for the thumb.",
+  Commercial: "Spots, ads, brand films.",
+  Experimental: "Latent-space studies.",
+};
+
+/** Display order for grouped sections on the Work area. */
+export const CATEGORY_ORDER: Category[] = [
+  "Short Film",
+  "Vertical Drama",
+  "Commercial",
+  "Experimental",
+];

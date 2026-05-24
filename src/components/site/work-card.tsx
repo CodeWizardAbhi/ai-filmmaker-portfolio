@@ -9,11 +9,11 @@ import { videoUrl } from "@/lib/media";
 type Props = {
   work: Work;
   index: number;
-  /** When true, render a larger feature tile */
-  feature?: boolean;
+  /** Mount this card eagerly (above-the-fold). */
+  priority?: boolean;
 };
 
-export function WorkCard({ work, index, feature = false }: Props) {
+export function WorkCard({ work, index, priority = false }: Props) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [hovered, setHovered] = useState(false);
   const [ready, setReady] = useState(false);
@@ -29,17 +29,11 @@ export function WorkCard({ work, index, feature = false }: Props) {
   const onLeave = () => {
     setHovered(false);
     const v = videoRef.current;
-    if (v) {
-      v.pause();
-    }
+    if (v) v.pause();
   };
 
   const aspect =
-    feature
-      ? "aspect-[16/9]"
-      : work.orientation === "vertical"
-        ? "aspect-[9/16]"
-        : "aspect-[16/9]";
+    work.orientation === "vertical" ? "aspect-[9/16]" : "aspect-[16/9]";
 
   return (
     <Link
@@ -48,23 +42,33 @@ export function WorkCard({ work, index, feature = false }: Props) {
       onMouseLeave={onLeave}
       onFocus={onEnter}
       onBlur={onLeave}
-      className="group relative block w-full"
+      className="group relative block w-full transition-transform duration-500 hover:-translate-y-0.5 focus-visible:outline-none"
       aria-label={`${work.title} — ${work.category}`}
     >
+      {/* Editorial top strip: index · category · year — outside the frame, like print captions */}
+      <div className="mb-3 flex items-baseline justify-between font-mono text-[10px] uppercase tracking-[0.28em] text-muted-foreground">
+        <span className="flex items-baseline gap-3">
+          <span className="text-foreground/80">
+            {String(index).padStart(2, "0")}
+          </span>
+          <span className="h-px w-5 translate-y-[-3px] bg-border" />
+          <span>{work.category}</span>
+        </span>
+        <span>{work.year}</span>
+      </div>
+
       <div
-        className={`relative overflow-hidden rounded-2xl bg-card ${aspect}`}
+        className={`relative overflow-hidden rounded-xl bg-card ring-1 ring-white/5 transition-shadow duration-500 group-hover:ring-white/20 ${aspect}`}
       >
-        {/* Poster */}
         <img
           src={`/posters/${work.slug}.jpg`}
           alt=""
           aria-hidden="true"
-          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${
+          className={`absolute inset-0 h-full w-full object-cover transition-all duration-[1100ms] ease-out group-hover:scale-[1.04] ${
             hovered && ready ? "opacity-0" : "opacity-100"
           }`}
-          loading={feature ? "eager" : "lazy"}
+          loading={priority ? "eager" : "lazy"}
         />
-        {/* Hover-preview video */}
         <video
           ref={videoRef}
           src={videoUrl(`/videos/${work.slug}.mp4`)}
@@ -78,45 +82,31 @@ export function WorkCard({ work, index, feature = false }: Props) {
           }`}
         />
 
-        {/* Top-left index + category */}
-        <div className="absolute left-4 top-4 z-10 flex items-center gap-3 text-[10px] uppercase tracking-[0.18em] text-foreground/80 mix-blend-difference">
-          <span className="font-mono">
-            {String(index).padStart(2, "0")}
-          </span>
-          <span className="h-px w-6 bg-foreground/50" />
-          <span>{work.category}</span>
+        {/* Faint hover affordance — tiny dot + word, no pills/colors */}
+        <div
+          className={`absolute right-4 top-4 z-10 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.28em] text-white/80 transition-opacity duration-500 ${
+            hovered ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <span className="inline-block h-1 w-1 animate-pulse rounded-full bg-white/90" />
+          Playing
         </div>
 
-        {/* Bottom gradient + title */}
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-black/85 via-black/30 to-transparent p-5 md:p-6">
-          <div className="flex items-end justify-between gap-6">
-            <div>
-              <h3 className="font-display text-2xl leading-tight tracking-tight text-pretty md:text-3xl">
+        {/* Bottom: title typography stamped on the image */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-5 md:p-7">
+          <div className="flex items-end justify-between gap-4">
+            <div className="min-w-0">
+              <h3 className="font-display text-2xl leading-[0.98] tracking-tight text-pretty text-white md:text-4xl">
                 {work.title}
               </h3>
-              <p className="mt-1 text-sm text-white/70 text-pretty">
+              <p className="mt-2 line-clamp-1 max-w-[28ch] text-xs italic text-white/65 text-pretty md:text-sm">
                 {work.tagline}
               </p>
             </div>
-            <div className="hidden shrink-0 text-right md:block">
-              <p className="font-mono text-xs uppercase tracking-widest text-white/60">
-                {work.year}
-              </p>
-              <p className="font-mono text-xs uppercase tracking-widest text-white/60">
-                {formatDuration(work.durationSec)}
-              </p>
+            <div className="shrink-0 self-end font-mono text-[10px] uppercase tracking-[0.28em] text-white/55 md:text-[11px]">
+              {formatDuration(work.durationSec)}
             </div>
           </div>
-        </div>
-
-        {/* Hover affordance */}
-        <div
-          className={`absolute right-4 top-4 z-10 inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/45 px-3 py-1.5 text-[11px] font-medium uppercase tracking-widest text-white backdrop-blur transition-all duration-300 ${
-            hovered ? "translate-y-0 opacity-100" : "-translate-y-1 opacity-0"
-          }`}
-        >
-          <span className="inline-block h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />
-          Preview
         </div>
       </div>
     </Link>
