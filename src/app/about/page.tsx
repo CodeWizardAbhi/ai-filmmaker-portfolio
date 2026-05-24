@@ -1,4 +1,3 @@
-import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -75,19 +74,8 @@ export default function AboutPage() {
         </p>
       </section>
 
-      {/* Big quote */}
-      <section className="mx-auto max-w-5xl border-y border-border bg-foreground/[0.02] px-6 py-14 md:py-20 lg:px-10">
-        <p className="font-display text-2xl leading-tight tracking-tight text-balance md:text-5xl">
-          “The model gives you a thousand frames.
-          <br />
-          <span className="italic text-muted-foreground">
-            The filmmaker decides which three matter.”
-          </span>
-        </p>
-      </section>
-
       {/* Services */}
-      <section className="mx-auto max-w-7xl px-6 py-16 md:py-24 lg:px-10">
+      <section className="mx-auto max-w-7xl border-t border-border px-6 py-16 md:py-24 lg:px-10">
         <div className="flex items-end justify-between gap-6">
           <h2 className="font-display text-3xl tracking-tight md:text-5xl">
             What I make.
@@ -136,31 +124,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="mx-auto max-w-5xl px-6 py-20 text-center md:py-28 lg:px-10">
-        <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground md:text-xs">
-          Now booking — 2026
-        </p>
-        <h2 className="mt-5 font-display text-[clamp(2rem,7vw,5rem)] leading-[1.02] tracking-tight text-balance md:mt-6">
-          Have a story
-          <span className="italic text-muted-foreground"> that needs the cut?</span>
-        </h2>
-        <div className="mt-8 flex flex-wrap justify-center gap-3 md:mt-10">
-          <a
-            href="mailto:usaabhiraj2@gmail.com"
-            className="inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-medium text-background transition-transform hover:scale-[1.02] md:px-6"
-          >
-            Email me
-            <span aria-hidden>↗</span>
-          </a>
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-3 text-sm font-medium text-foreground transition-colors hover:bg-foreground/5 md:px-6"
-          >
-            See the work
-          </Link>
-        </div>
-      </section>
     </article>
   );
 }

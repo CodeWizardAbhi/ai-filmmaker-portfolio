@@ -3,21 +3,13 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import type { Work } from "@/lib/works";
-import { formatDuration } from "@/lib/works";
 import { videoUrl } from "@/lib/media";
-
-const ROTATING_LINES = [
-  "Generative cinema.",
-  "Models render. The cut decides.",
-  "Latent space, sharpened.",
-];
 
 export function Hero({ work }: { work: Work }) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const sectionRef = useRef<HTMLElement | null>(null);
   const spotlightRef = useRef<HTMLDivElement | null>(null);
   const [playing, setPlaying] = useState(false);
-  const [lineIndex, setLineIndex] = useState(0);
 
   useEffect(() => {
     const v = videoRef.current;
@@ -32,14 +24,6 @@ export function Hero({ work }: { work: Work }) {
       }
     };
     void tryPlay();
-  }, []);
-
-  // Rotate tagline every 3.4s
-  useEffect(() => {
-    const id = window.setInterval(() => {
-      setLineIndex((i) => (i + 1) % ROTATING_LINES.length);
-    }, 3400);
-    return () => window.clearInterval(id);
   }, []);
 
   // Mouse-following spotlight
@@ -127,20 +111,17 @@ export function Hero({ work }: { work: Work }) {
         }}
       />
 
-      <div className="relative z-20 mx-auto flex h-full max-w-7xl flex-col justify-between px-6 pt-28 pb-12 lg:px-10">
-        <div className="flex items-center gap-3 text-[11px] uppercase tracking-[0.22em] text-white/70">
+      <div className="relative z-20 mx-auto flex h-full max-w-7xl flex-col justify-between px-6 pt-24 pb-14 md:pt-28 lg:px-10">
+        <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.28em] text-white/70 md:text-[11px]">
           <span className="relative inline-flex h-2 w-2">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--accent)] opacity-75" />
             <span className="relative inline-block h-2 w-2 rounded-full bg-[var(--accent)]" />
           </span>
-          Now playing · {work.category}
+          {work.category} · {work.year}
         </div>
 
         <div className="max-w-4xl">
-          <p className="font-mono text-xs uppercase tracking-[0.22em] text-white/60">
-            Featured / {work.year}
-          </p>
-          <h1 className="mt-3 font-display text-[clamp(2.6rem,8vw,7rem)] leading-[0.92] tracking-tight text-balance text-white">
+          <h1 className="font-display text-[clamp(2.6rem,9vw,7rem)] leading-[0.92] tracking-tight text-balance text-white">
             {work.title.split("—")[0].trim()}
             {work.title.includes("—") && (
               <span className="block italic text-white/80">
@@ -149,30 +130,11 @@ export function Hero({ work }: { work: Work }) {
             )}
           </h1>
 
-          {/* Cycling tagline — single line, no static duplicate below */}
-          <div className="relative mt-6 h-7 max-w-xl overflow-hidden md:h-8">
-            {ROTATING_LINES.map((t, i) => (
-              <span
-                key={t}
-                className="absolute inset-0 text-base text-white/80 transition-all duration-700 md:text-lg"
-                style={{
-                  opacity: i === lineIndex ? 1 : 0,
-                  transform:
-                    i === lineIndex
-                      ? "translateY(0)"
-                      : i === (lineIndex - 1 + ROTATING_LINES.length) %
-                            ROTATING_LINES.length
-                        ? "translateY(-100%)"
-                        : "translateY(100%)",
-                }}
-                aria-hidden={i !== lineIndex}
-              >
-                {t}
-              </span>
-            ))}
-          </div>
+          <p className="mt-5 max-w-md text-sm text-white/65 text-pretty md:mt-6 md:max-w-xl md:text-base">
+            {work.tagline}
+          </p>
 
-          <div className="mt-7 flex flex-wrap items-center gap-3">
+          <div className="mt-7 flex flex-wrap items-center gap-3 md:mt-8">
             <Link
               href={`/work/${work.slug}`}
               className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-white px-5 py-2.5 text-sm font-medium text-black transition-transform hover:scale-[1.03] active:scale-[0.98]"
@@ -188,54 +150,32 @@ export function Hero({ work }: { work: Work }) {
               href="/about"
               className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/5 px-5 py-2.5 text-sm font-medium text-white backdrop-blur transition-colors hover:bg-white/10"
             >
-              About the work
+              About
               <span aria-hidden>→</span>
             </Link>
           </div>
         </div>
 
-        <div className="flex items-end justify-between">
-          <div className="hidden gap-2 sm:flex">
-            <button
-              type="button"
-              onClick={togglePlay}
-              aria-pressed={playing}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/25 bg-black/40 text-white backdrop-blur transition-colors hover:bg-white/15"
-              aria-label={playing ? "Pause hero video" : "Play hero video"}
-            >
-              {playing ? (
-                <PauseIcon className="h-4 w-4" />
-              ) : (
-                <PlayIcon className="h-4 w-4" />
-              )}
-            </button>
-            <span className="inline-flex h-10 items-center gap-2 rounded-full border border-white/15 bg-black/30 px-4 font-mono text-[10px] uppercase tracking-[0.22em] text-white/60 backdrop-blur">
-              Showcase loop · 60s
-            </span>
+        {/* Bottom row: play toggle (desktop) + scroll cue (desktop) — mobile gets nothing here so nothing can collide. */}
+        <div className="hidden items-end justify-between md:flex">
+          <button
+            type="button"
+            onClick={togglePlay}
+            aria-pressed={playing}
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/25 bg-black/40 text-white backdrop-blur transition-colors hover:bg-white/15"
+            aria-label={playing ? "Pause hero video" : "Play hero video"}
+          >
+            {playing ? (
+              <PauseIcon className="h-4 w-4" />
+            ) : (
+              <PlayIcon className="h-4 w-4" />
+            )}
+          </button>
+          <div className="flex flex-col items-center gap-2 text-[10px] uppercase tracking-[0.3em] text-white/45">
+            <span>Scroll</span>
+            <span className="h-8 w-px animate-[scrollLine_2.4s_ease-in-out_infinite] bg-gradient-to-b from-white/60 to-transparent" />
           </div>
-
-          <div className="ml-auto flex items-end gap-6 text-right font-mono text-[10px] uppercase tracking-[0.18em] text-white/65">
-            <div>
-              <p className="text-white/45">Runtime</p>
-              <p className="text-white">{formatDuration(work.durationSec)}</p>
-            </div>
-            <div>
-              <p className="text-white/45">Resolution</p>
-              <p className="text-white">{work.resolution}</p>
-            </div>
-            <div className="hidden md:block">
-              <p className="text-white/45">Tooling</p>
-              <p className="text-white">{work.tools.join(" · ")}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Scroll indicator */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-6 z-20 flex justify-center">
-        <div className="flex flex-col items-center gap-2 text-[10px] uppercase tracking-[0.3em] text-white/45">
-          <span>Scroll</span>
-          <span className="h-8 w-px animate-[scrollLine_2.4s_ease-in-out_infinite] bg-gradient-to-b from-white/60 to-transparent" />
+          <span className="w-10" aria-hidden />
         </div>
       </div>
     </section>

@@ -6,22 +6,15 @@ import { videoUrl } from "@/lib/media";
 
 export function ShowcaseWall() {
   return (
-    <section className="relative mx-auto w-full max-w-7xl px-6 pt-16 pb-12 md:pt-24 lg:px-10">
-      <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between md:gap-8">
+    <section className="relative mx-auto w-full max-w-7xl px-6 pt-16 pb-12 md:pt-20 lg:px-10">
+      <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between md:gap-8">
         <div>
-          <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground md:text-xs">
-            Showcase · Seedance trials
+          <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-muted-foreground md:text-[11px]">
+            Showcase
           </p>
-          <h2 className="mt-3 font-display text-[clamp(2rem,7vw,4rem)] leading-[1.02] tracking-tight text-balance">
-            Ten experiments,
-            <br />
-            <span className="italic text-muted-foreground">
-              two and a half minutes.
-            </span>
+          <h2 className="mt-3 font-display text-[clamp(1.9rem,6vw,3.4rem)] leading-[1.02] tracking-tight text-balance">
+            Ten trials, one reel.
           </h2>
-          <p className="mt-4 max-w-md text-sm text-muted-foreground text-pretty md:text-base">
-            One-take trials, sequenced into one reel.
-          </p>
         </div>
         <a
           href={videoUrl("/videos/showcase-reel.mp4")}
