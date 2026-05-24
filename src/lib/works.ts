@@ -23,17 +23,17 @@ export type Work = {
 
 export const works: Work[] = [
   {
-    slug: "showreel",
+    slug: "showcase-reel",
     title: "Reel — 2026",
     category: "Showreel",
     year: 2026,
-    durationSec: 451,
+    durationSec: 150,
     orientation: "landscape",
-    resolution: "2560×1440",
-    tagline: "Seven and a half minutes of AI cinema.",
+    resolution: "1280×720",
+    tagline: "Two and a half minutes of AI cinema.",
     description:
-      "A condensed look at the past year of work — narrative shorts, brand films, and experiments. Built with generative video models, in-house pipelines, and an old-fashioned obsession with cut and rhythm.",
-    tools: ["Runway", "Kling", "Suno", "DaVinci Resolve"],
+      "A condensed look at this year's generative work — animals, athletes, fantasy, VR. Ten trials rendered in single takes and sequenced into one continuous cut. Built with generative video models, in-house pipelines, and an old-fashioned obsession with rhythm.",
+    tools: ["Seedance", "Runway", "Kling", "DaVinci Resolve"],
     featured: true,
   },
   {

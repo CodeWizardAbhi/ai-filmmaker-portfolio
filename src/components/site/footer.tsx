@@ -69,7 +69,7 @@ export function Footer() {
             </li>
             <li>
               <a
-                href={videoUrl("/videos/showreel.mp4")}
+                href={videoUrl("/videos/showcase-reel.mp4")}
                 className="hover:text-[var(--accent)]"
               >
                 Showreel
