@@ -2,10 +2,8 @@ import Link from "next/link";
 import { videoUrl } from "@/lib/media";
 
 const SOCIALS = [
-  { label: "Instagram", href: "https://instagram.com/" },
-  { label: "X / Twitter", href: "https://x.com/" },
-  { label: "YouTube", href: "https://youtube.com/" },
-  { label: "Vimeo", href: "https://vimeo.com/" },
+  { label: "Instagram", href: "https://www.instagram.com/abhirajfr_/" },
+  { label: "X / Twitter", href: "https://x.com/Abhilome" },
 ];
 
 export function Footer() {
@@ -19,13 +17,13 @@ export function Footer() {
             <span className="italic text-muted-foreground">that moves.</span>
           </p>
           <a
-            href="mailto:belikeabhi99@gmail.com"
-            className="mt-6 inline-flex items-center gap-3 text-base text-foreground hover:text-[var(--accent)]"
+            href="mailto:usaabhiraj2@gmail.com"
+            className="mt-6 inline-flex items-center gap-3 text-base break-all text-foreground hover:text-[var(--accent)]"
           >
             <span className="border-b border-foreground/40 pb-0.5 group-hover:border-[var(--accent)]">
-              belikeabhi99@gmail.com
+              usaabhiraj2@gmail.com
             </span>
-            <span aria-hidden>↗</span>
+            <span aria-hidden className="shrink-0">↗</span>
           </a>
         </div>
 

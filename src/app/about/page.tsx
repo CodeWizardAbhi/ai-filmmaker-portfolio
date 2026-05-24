@@ -8,10 +8,34 @@ export const metadata: Metadata = {
 };
 
 const STACK = [
-  { label: "Generation", items: ["Runway Gen-3", "Kling 1.6", "Sora", "Hunyuan", "Veo 3", "Pika 2"] },
-  { label: "Audio", items: ["Suno", "ElevenLabs", "Udio", "AudioGen"] },
-  { label: "Finishing", items: ["DaVinci Resolve", "After Effects", "Premiere", "Topaz Video AI"] },
-  { label: "Workflow", items: ["ComfyUI", "Magnific", "Krea", "Custom in-house tooling"] },
+  {
+    label: "Generation",
+    items: [
+      "Seedance 2.0",
+      "Kling O3 / V3",
+      "Recraft V4",
+      "GPT Image 2",
+      "Nano Banana Pro / 2",
+    ],
+  },
+  {
+    label: "Gen Tools",
+    items: ["Morphic AI", "Higgsfield AI", "Lumalabs", "Google Flow"],
+  },
+  {
+    label: "Tools",
+    items: ["DaVinci Resolve Studio", "Milanote", "Pr / AE", "Topaz", "Claude"],
+  },
+  {
+    label: "Iterate",
+    items: [
+      "Claude Code",
+      "Cursor",
+      "Antigravity",
+      "ComfyUI (learning)",
+      "Agentic workflows (experimental)",
+    ],
+  },
 ];
 
 const SERVICES = [
@@ -126,7 +150,7 @@ export default function AboutPage() {
         </h2>
         <div className="mt-10 flex flex-wrap justify-center gap-3">
           <a
-            href="mailto:belikeabhi99@gmail.com"
+            href="mailto:usaabhiraj2@gmail.com"
             className="inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-transform hover:scale-[1.02]"
           >
             Email me

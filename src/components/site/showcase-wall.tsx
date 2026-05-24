@@ -1,26 +1,25 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { showcase } from "@/lib/showcase";
 import { videoUrl } from "@/lib/media";
 
 export function ShowcaseWall() {
   return (
-    <section className="relative mx-auto w-full max-w-7xl px-6 pt-24 pb-12 lg:px-10">
-      <div className="flex items-end justify-between gap-8">
+    <section className="relative mx-auto w-full max-w-7xl px-6 pt-16 pb-12 md:pt-24 lg:px-10">
+      <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between md:gap-8">
         <div>
-          <p className="font-mono text-xs uppercase tracking-[0.22em] text-muted-foreground">
+          <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground md:text-xs">
             Showcase · Seedance trials
           </p>
-          <h2 className="mt-3 font-display text-[clamp(2rem,5vw,4rem)] leading-[1.02] tracking-tight text-balance">
+          <h2 className="mt-3 font-display text-[clamp(2rem,7vw,4rem)] leading-[1.02] tracking-tight text-balance">
             Ten experiments,
             <br />
             <span className="italic text-muted-foreground">
               two and a half minutes.
             </span>
           </h2>
-          <p className="mt-4 max-w-xl text-muted-foreground text-pretty">
+          <p className="mt-4 max-w-xl text-sm text-muted-foreground text-pretty md:text-base">
             Generative tests pushed for range — animals, athletes, fantasy,
             VR — each rendered in one take, then sequenced into a single reel.
           </p>
@@ -29,7 +28,7 @@ export function ShowcaseWall() {
           href={videoUrl("/videos/showcase-reel.mp4")}
           target="_blank"
           rel="noopener noreferrer"
-          className="hidden whitespace-nowrap rounded-full border border-border bg-foreground/5 px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-foreground hover:text-background md:inline-flex md:items-center md:gap-2"
+          className="inline-flex w-fit items-center gap-2 whitespace-nowrap rounded-full border border-border bg-foreground/5 px-4 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-foreground hover:text-background"
         >
           Play full reel
           <span aria-hidden>↗</span>
@@ -108,14 +107,6 @@ function ShowcaseTile({
           {clip.tagline}
         </p>
       </div>
-
-      <Link
-        href={videoUrl(`/videos/showcase/${clip.slug}.mp4`)}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="absolute inset-0"
-        aria-label={`${clip.title} — open clip in new tab`}
-      />
     </article>
   );
 }

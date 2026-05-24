@@ -122,8 +122,11 @@
   * {
     @apply border-border outline-ring/50;
   }
-  body {
+  html, body {
     @apply bg-background text-foreground;
+    overflow-x: hidden;
+  }
+  body {
     font-feature-settings: "ss01", "cv11";
   }
   button:not(:disabled), [role="button"]:not(:disabled) {
@@ -131,10 +134,17 @@
   }
   html {
     @apply font-sans;
+    -webkit-tap-highlight-color: transparent;
   }
   ::selection {
     background-color: var(--foreground);
     color: var(--background);
+  }
+  /* Mobile-friendly tap target floor for interactive controls */
+  @media (hover: none) and (pointer: coarse) {
+    a, button {
+      min-height: 36px;
+    }
   }
 }
 

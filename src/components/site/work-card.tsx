@@ -46,15 +46,15 @@ export function WorkCard({ work, index, priority = false }: Props) {
       aria-label={`${work.title} — ${work.category}`}
     >
       {/* Editorial top strip: index · category · year — outside the frame, like print captions */}
-      <div className="mb-3 flex items-baseline justify-between font-mono text-[10px] uppercase tracking-[0.28em] text-muted-foreground">
-        <span className="flex items-baseline gap-3">
+      <div className="mb-2.5 flex items-baseline justify-between gap-2 font-mono text-[9px] uppercase tracking-[0.22em] text-muted-foreground md:mb-3 md:text-[10px] md:tracking-[0.28em]">
+        <span className="flex min-w-0 items-baseline gap-2 md:gap-3">
           <span className="text-foreground/80">
             {String(index).padStart(2, "0")}
           </span>
-          <span className="h-px w-5 translate-y-[-3px] bg-border" />
-          <span>{work.category}</span>
+          <span className="h-px w-4 translate-y-[-3px] bg-border md:w-5" />
+          <span className="truncate">{work.category}</span>
         </span>
-        <span>{work.year}</span>
+        <span className="shrink-0">{work.year}</span>
       </div>
 
       <div
@@ -93,17 +93,17 @@ export function WorkCard({ work, index, priority = false }: Props) {
         </div>
 
         {/* Bottom: title typography stamped on the image */}
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-5 md:p-7">
-          <div className="flex items-end justify-between gap-4">
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-3.5 md:p-7">
+          <div className="flex items-end justify-between gap-3">
             <div className="min-w-0">
-              <h3 className="font-display text-2xl leading-[0.98] tracking-tight text-pretty text-white md:text-4xl">
+              <h3 className="font-display text-lg leading-[0.98] tracking-tight text-pretty text-white sm:text-xl md:text-3xl xl:text-4xl">
                 {work.title}
               </h3>
-              <p className="mt-2 line-clamp-1 max-w-[28ch] text-xs italic text-white/65 text-pretty md:text-sm">
+              <p className="mt-1.5 line-clamp-1 max-w-[28ch] text-[11px] italic text-white/65 text-pretty md:mt-2 md:text-sm">
                 {work.tagline}
               </p>
             </div>
-            <div className="shrink-0 self-end font-mono text-[10px] uppercase tracking-[0.28em] text-white/55 md:text-[11px]">
+            <div className="shrink-0 self-end font-mono text-[9px] uppercase tracking-[0.22em] text-white/55 md:text-[11px] md:tracking-[0.28em]">
               {formatDuration(work.durationSec)}
             </div>
           </div>

@@ -72,7 +72,7 @@ export function Nav() {
           })}
           <li className="ml-2">
             <a
-              href="mailto:belikeabhi99@gmail.com"
+              href="mailto:usaabhiraj2@gmail.com"
               className="inline-flex items-center gap-2 rounded-full border border-border bg-foreground/5 px-3.5 py-1.5 text-xs font-medium tracking-wide text-foreground transition-colors hover:bg-foreground hover:text-background"
             >
               Get in touch

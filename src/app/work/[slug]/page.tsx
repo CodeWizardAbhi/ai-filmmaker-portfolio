@@ -35,20 +35,20 @@ export default async function WorkPage({ params }: Params) {
   const prev = works[(i - 1 + works.length) % works.length];
 
   return (
-    <article className="pb-32">
+    <article className="pb-24 md:pb-32">
       {/* Title block */}
-      <header className="mx-auto max-w-7xl px-6 pt-28 pb-10 lg:px-10">
-        <div className="flex items-center gap-3 text-xs uppercase tracking-[0.22em] text-muted-foreground">
+      <header className="mx-auto max-w-7xl px-6 pt-24 pb-8 md:pt-28 md:pb-10 lg:px-10">
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] uppercase tracking-[0.22em] text-muted-foreground md:text-xs">
           <Link href="/" className="hover:text-foreground">
             Work
           </Link>
           <span aria-hidden>/</span>
-          <span>{work.category}</span>
+          <span className="truncate">{work.category}</span>
         </div>
-        <h1 className="mt-6 font-display text-[clamp(2.4rem,7vw,6rem)] leading-[0.95] tracking-tight text-balance">
+        <h1 className="mt-5 font-display text-[clamp(2.2rem,9vw,6rem)] leading-[0.95] tracking-tight text-balance md:mt-6">
           {work.title}
         </h1>
-        <p className="mt-4 max-w-2xl text-lg text-muted-foreground text-pretty">
+        <p className="mt-4 max-w-2xl text-base text-muted-foreground text-pretty md:text-lg">
           {work.tagline}
         </p>
       </header>
@@ -74,8 +74,8 @@ export default async function WorkPage({ params }: Params) {
       </div>
 
       {/* Meta strip */}
-      <section className="mx-auto mt-14 max-w-7xl px-6 lg:px-10">
-        <div className="grid grid-cols-2 gap-6 border-t border-border pt-6 md:grid-cols-4">
+      <section className="mx-auto mt-10 max-w-7xl px-6 md:mt-14 lg:px-10">
+        <div className="grid grid-cols-2 gap-5 border-t border-border pt-5 md:grid-cols-4 md:gap-6 md:pt-6">
           <Meta label="Year" value={String(work.year)} />
           <Meta label="Runtime" value={formatDuration(work.durationSec)} />
           <Meta label="Resolution" value={work.resolution} />
@@ -87,20 +87,20 @@ export default async function WorkPage({ params }: Params) {
       </section>
 
       {/* Description + tools */}
-      <section className="mx-auto mt-16 grid max-w-7xl gap-12 px-6 lg:grid-cols-[1.4fr_1fr] lg:px-10">
+      <section className="mx-auto mt-12 grid max-w-7xl gap-10 px-6 md:mt-16 md:gap-12 lg:grid-cols-[1.4fr_1fr] lg:px-10">
         <div>
-          <p className="font-mono text-xs uppercase tracking-[0.22em] text-muted-foreground">
+          <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground md:text-xs">
             Notes from the cut
           </p>
-          <p className="mt-5 max-w-2xl text-balance text-2xl leading-relaxed text-foreground md:text-3xl">
+          <p className="mt-4 max-w-2xl text-balance text-lg leading-relaxed text-foreground md:mt-5 md:text-2xl md:leading-relaxed lg:text-3xl">
             {work.description}
           </p>
         </div>
         <div>
-          <p className="font-mono text-xs uppercase tracking-[0.22em] text-muted-foreground">
+          <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground md:text-xs">
             Tooling
           </p>
-          <ul className="mt-5 flex flex-wrap gap-2">
+          <ul className="mt-4 flex flex-wrap gap-2 md:mt-5">
             {work.tools.map((t) => (
               <li
                 key={t}
@@ -116,27 +116,27 @@ export default async function WorkPage({ params }: Params) {
       {/* Prev / Next */}
       <nav
         aria-label="More work"
-        className="mx-auto mt-28 grid max-w-7xl gap-4 border-t border-border px-6 pt-12 md:grid-cols-2 lg:px-10"
+        className="mx-auto mt-20 grid max-w-7xl gap-3 border-t border-border px-6 pt-10 md:mt-28 md:gap-4 md:pt-12 md:grid-cols-2 lg:px-10"
       >
         <Link
           href={`/work/${prev.slug}`}
-          className="group flex flex-col gap-2 rounded-2xl border border-border bg-card/50 p-6 transition-colors hover:bg-card md:flex-row md:items-center md:gap-6"
+          className="group flex flex-col gap-2 rounded-2xl border border-border bg-card/50 p-5 transition-colors hover:bg-card md:flex-row md:items-center md:gap-6 md:p-6"
         >
-          <span className="font-mono text-xs uppercase tracking-[0.22em] text-muted-foreground">
+          <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground md:text-xs">
             ← Previous
           </span>
-          <span className="font-display text-2xl tracking-tight text-foreground">
+          <span className="font-display text-xl tracking-tight text-foreground md:text-2xl">
             {prev.title}
           </span>
         </Link>
         <Link
           href={`/work/${next.slug}`}
-          className="group flex flex-col gap-2 rounded-2xl border border-border bg-card/50 p-6 text-right transition-colors hover:bg-card md:flex-row md:items-center md:justify-end md:gap-6"
+          className="group flex flex-col gap-2 rounded-2xl border border-border bg-card/50 p-5 text-right transition-colors hover:bg-card md:flex-row md:items-center md:justify-end md:gap-6 md:p-6"
         >
-          <span className="font-display text-2xl tracking-tight text-foreground">
+          <span className="font-display text-xl tracking-tight text-foreground md:text-2xl">
             {next.title}
           </span>
-          <span className="font-mono text-xs uppercase tracking-[0.22em] text-muted-foreground">
+          <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground md:text-xs">
             Next →
           </span>
         </Link>

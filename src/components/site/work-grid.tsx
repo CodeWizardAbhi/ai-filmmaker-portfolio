@@ -44,17 +44,18 @@ export function WorkGrid({ works }: { works: Work[] }) {
 
   return (
     <div>
-      {/* Sticky editorial jump-nav — typographic, no colored fills */}
+      {/* Sticky editorial jump-nav — typographic, no colored fills.
+          On mobile: horizontally scrollable strip; on md+: wraps inline. */}
       <nav
         aria-label="Work categories"
-        className="sticky top-16 z-30 -mx-2 mb-16 border-b border-border bg-background/85 px-2 backdrop-blur-xl"
+        className="sticky top-16 z-30 -mx-6 mb-12 border-b border-border bg-background/85 backdrop-blur-xl md:-mx-2 md:mb-16"
       >
-        <ul className="flex flex-wrap items-baseline gap-x-7 gap-y-2 py-4 font-mono text-[11px] uppercase tracking-[0.22em]">
+        <ul className="flex items-baseline gap-x-5 gap-y-2 overflow-x-auto whitespace-nowrap px-6 py-3 font-mono text-[10px] uppercase tracking-[0.22em] md:flex-wrap md:gap-x-7 md:overflow-visible md:whitespace-normal md:px-2 md:py-4 md:text-[11px] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {groups.map((g) => {
             const id = slugifyCategory(g.category);
             const isActive = activeId === id;
             return (
-              <li key={g.category} className="flex items-baseline gap-1.5">
+              <li key={g.category} className="flex shrink-0 items-baseline gap-1.5">
                 <a
                   href={`#${id}`}
                   className={`transition-colors ${
@@ -109,27 +110,25 @@ function CategorySection({
       aria-labelledby={`${slugifyCategory(group.category)}-heading`}
     >
       {/* Editorial section header — print-style: numeral, kicker, big serif title, count */}
-      <header className="mb-10 grid grid-cols-12 items-end gap-4 border-b border-border pb-6">
-        <div className="col-span-12 md:col-span-2">
-          <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-muted-foreground/70">
-            Vol. {numeral}
-          </p>
+      <header className="mb-8 border-b border-border pb-5 md:mb-10 md:pb-6">
+        {/* Top meta row — visible on mobile and desktop */}
+        <div className="flex items-baseline justify-between gap-3 font-mono text-[10px] uppercase tracking-[0.28em] text-muted-foreground/70 md:tracking-[0.32em]">
+          <span>Vol. {numeral}</span>
+          <span>
+            {group.items.length.toString().padStart(2, "0")} —{" "}
+            {group.items.length === 1 ? "piece" : "pieces"}
+          </span>
         </div>
-        <div className="col-span-12 md:col-span-7">
+        {/* Title + kicker */}
+        <div className="mt-3 md:mt-4">
           <h3
             id={`${slugifyCategory(group.category)}-heading`}
-            className="font-display text-[clamp(2.2rem,4.5vw,3.6rem)] leading-[0.95] tracking-tight text-balance"
+            className="font-display text-[clamp(2rem,7vw,3.6rem)] leading-[0.95] tracking-tight text-balance"
           >
             {group.category}
           </h3>
-          <p className="mt-3 text-sm italic text-muted-foreground text-pretty md:text-base">
+          <p className="mt-2 max-w-xl text-sm italic text-muted-foreground text-pretty md:mt-3 md:text-base">
             {kicker}
-          </p>
-        </div>
-        <div className="col-span-12 text-left md:col-span-3 md:text-right">
-          <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-muted-foreground/70">
-            {group.items.length.toString().padStart(2, "0")} —{" "}
-            {group.items.length === 1 ? "piece" : "pieces"}
           </p>
         </div>
       </header>
