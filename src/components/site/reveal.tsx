@@ -52,9 +52,8 @@ export function Reveal({
     return () => io.disconnect();
   }, [once]);
 
-  const Comp = As as keyof React.JSX.IntrinsicElements;
+  const Comp = As as React.ElementType;
   return (
-    // @ts-expect-error generic element ref
     <Comp
       ref={ref}
       className={className}
