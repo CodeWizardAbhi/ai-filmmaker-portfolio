@@ -29,7 +29,7 @@ export const works: Work[] = [
     durationSec: 150,
     orientation: "landscape",
     resolution: "1280×720",
-    tagline: "Two and a half minutes of AI cinema.",
+    tagline: "Experimental stuff when I try new models.",
     description:
       "A condensed look at this year's generative work — animals, athletes, fantasy, VR. Ten trials rendered in single takes and sequenced into one continuous cut. Built with generative video models, in-house pipelines, and an old-fashioned obsession with rhythm.",
     tools: ["Seedance", "Runway", "Kling", "DaVinci Resolve"],
