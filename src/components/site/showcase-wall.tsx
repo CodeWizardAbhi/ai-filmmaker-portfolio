@@ -19,9 +19,8 @@ export function ShowcaseWall() {
               two and a half minutes.
             </span>
           </h2>
-          <p className="mt-4 max-w-xl text-sm text-muted-foreground text-pretty md:text-base">
-            Generative tests pushed for range — animals, athletes, fantasy,
-            VR — each rendered in one take, then sequenced into a single reel.
+          <p className="mt-4 max-w-md text-sm text-muted-foreground text-pretty md:text-base">
+            One-take trials, sequenced into one reel.
           </p>
         </div>
         <a

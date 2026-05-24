@@ -31,7 +31,7 @@ export const works: Work[] = [
     resolution: "1280×720",
     tagline: "Experimental stuff when I try new models.",
     description:
-      "A condensed look at this year's generative work — animals, athletes, fantasy, VR. Ten trials rendered in single takes and sequenced into one continuous cut. Built with generative video models, in-house pipelines, and an old-fashioned obsession with rhythm.",
+      "Ten one-take generative trials, sequenced into one continuous cut. New models, an old obsession with rhythm.",
     tools: ["Seedance", "Runway", "Kling", "DaVinci Resolve"],
     featured: true,
   },
@@ -45,7 +45,7 @@ export const works: Work[] = [
     resolution: "1920×1080",
     tagline: "The armory speaks before the warrior does.",
     description:
-      "A short on the breath before the war — forged steel, gods listening, a body finding its weight. Built in latent space with a single performer and a thousand iterations.",
+      "The breath before the war — steel, gods, a body finding its weight. One performer, a thousand iterations.",
     tools: ["Runway", "Kling", "Seedance", "DaVinci Resolve"],
   },
   {
@@ -58,7 +58,7 @@ export const works: Work[] = [
     resolution: "3840×2160",
     tagline: "A first contact, the morning after.",
     description:
-      "Day two of an arrival that didn't go the way the brochures said it would. A short on memory, dust, and the strange ordinariness of the impossible.",
+      "An arrival that didn't go the way the brochures said. Memory, dust, the ordinariness of the impossible.",
     tools: ["Runway Gen-3", "Topaz", "Resolve"],
   },
   {
@@ -71,7 +71,7 @@ export const works: Work[] = [
     resolution: "1920×1080",
     tagline: "A green and gold incantation.",
     description:
-      "Built around a single chant — frames generated, treated, then re-projected onto the soundtrack until the cut could feel the beat.",
+      "Built around a single chant. Frames re-projected onto the track until the cut found the beat.",
     tools: ["Runway", "Suno", "Premiere"],
   },
   {
@@ -84,7 +84,7 @@ export const works: Work[] = [
     resolution: "1080×1920",
     tagline: "Vertical drama, equator-bright.",
     description:
-      "Episode one of a vertical series built for the feed. Heat, color, and small choices that decide who walks away.",
+      "Episode one. Heat, color, and small choices that decide who walks away.",
     tools: ["Runway", "Kling", "ElevenLabs"],
   },
   {
@@ -97,7 +97,7 @@ export const works: Work[] = [
     resolution: "1080×1920",
     tagline: "Wrong century. Right person.",
     description:
-      "A vertical romance shot in the language of the algorithm — pinks, blacks, a thousand-year smile.",
+      "A vertical romance in the language of the algorithm — pinks, blacks, a thousand-year smile.",
     tools: ["Runway", "Suno", "CapCut"],
   },
   {
@@ -123,7 +123,7 @@ export const works: Work[] = [
     resolution: "1080×1920",
     tagline: "A wardrobe in twenty-three seconds.",
     description:
-      "An exercise in identity loops — each change of cloth a small reincarnation. Built as a fashion-vertical the algorithm can't scroll past.",
+      "Identity loops — each change of cloth a small reincarnation. Fashion the algorithm can't scroll past.",
     tools: ["Kling", "Magnific"],
   },
   {
@@ -136,7 +136,7 @@ export const works: Work[] = [
     resolution: "1080×1920",
     tagline: "A brand film for the thumb.",
     description:
-      "Twenty-four seconds of product story, built to live inside a feed and still feel like cinema.",
+      "Twenty-four seconds of product story, built for the feed.",
     tools: ["Runway", "Suno", "After Effects"],
   },
   {
@@ -162,7 +162,7 @@ export const works: Work[] = [
     resolution: "3840×2160",
     tagline: "A figure between feather and flesh.",
     description:
-      "A sequence study exploring metamorphosis in latent space. Hand-keyed motion brushed against model hallucination.",
+      "A study in metamorphosis. Hand-keyed motion brushed against model hallucination.",
     tools: ["Kling 1.6", "Magnific", "After Effects"],
   },
 ];

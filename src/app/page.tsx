@@ -31,14 +31,14 @@ export default function HomePage() {
       </Reveal>
 
       {/* Section heading */}
-      <section className="mx-auto w-full max-w-7xl px-6 pt-24 lg:px-10">
+      <section className="mx-auto w-full max-w-7xl px-6 pt-16 md:pt-24 lg:px-10">
         <Reveal>
-          <div className="flex items-end justify-between gap-8">
+          <div className="flex items-end justify-between gap-6">
             <div>
-              <p className="font-mono text-xs uppercase tracking-[0.22em] text-muted-foreground">
-                Selected Work · 2025–26
+              <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground md:text-xs">
+                Selected Work
               </p>
-              <h2 className="mt-3 font-display text-[clamp(2rem,5vw,4rem)] leading-[1.02] tracking-tight text-balance">
+              <h2 className="mt-3 font-display text-[clamp(2rem,7vw,4rem)] leading-[1.02] tracking-tight text-balance">
                 Cinema, generated.
                 <br />
                 <span className="italic text-muted-foreground">
@@ -50,7 +50,7 @@ export default function HomePage() {
               href="/about"
               className="hidden whitespace-nowrap text-sm text-muted-foreground hover:text-foreground md:inline"
             >
-              About the practice →
+              About →
             </Link>
           </div>
         </Reveal>
@@ -64,23 +64,23 @@ export default function HomePage() {
       </section>
 
       {/* Stats / claims */}
-      <section className="mx-auto w-full max-w-7xl px-6 py-28 lg:px-10">
+      <section className="mx-auto w-full max-w-7xl px-6 py-20 md:py-28 lg:px-10">
         <Reveal>
-          <div className="grid gap-12 md:grid-cols-4">
+          <div className="grid gap-10 md:grid-cols-4 md:gap-12">
             <Stat
               n={<Counter to={20} />}
               label="Pieces shipped"
-              sub="Across shorts, ads, music, series & trials."
+              sub="Shorts, drama, commercials, trials."
             />
             <Stat
               n={<Counter to={8} suffix="+" />}
               label="Generative models"
-              sub="Runway · Kling · Seedance · Sora · Hunyuan · Veo · Pika."
+              sub="Seedance · Kling · Runway · Recraft · Nano Banana."
             />
             <Stat
               n={<Counter to={150} suffix="s" />}
               label="In the showcase reel"
-              sub="Ten trials cut into one continuous take."
+              sub="Ten trials, one continuous cut."
             />
             <Stat n="∞" label="Iterations / sec" sub="Render. Watch. Cut. Repeat." />
           </div>
@@ -94,8 +94,8 @@ function Marquee() {
   const items = [
     "Generative cinema",
     "Vertical drama",
-    "Brand films",
-    "Music videos",
+    "Short films",
+    "Commercials",
     "Latent space, sharpened",
     "Edited frame by frame",
   ];

@@ -40,47 +40,44 @@ const STACK = [
 
 const SERVICES = [
   {
-    title: "Brand films",
-    body: "Short-form narrative built for the feed. Concept, model wrangling, edit and delivery in one pipeline.",
+    title: "Short films",
+    body: "Long-form generative narrative, edited like it matters.",
   },
   {
-    title: "Music videos",
-    body: "Sound-first generative cinema. The track sets the frame; the cut follows the beat.",
+    title: "Vertical drama",
+    body: "Built for the phone — episodic, addictive, end-to-end.",
   },
   {
-    title: "Series & shorts",
-    body: "Episodic stories — vertical or wide — written and produced inside generative models.",
+    title: "Commercials",
+    body: "Spots that live in the feed and still feel like cinema.",
   },
   {
     title: "Pipelines & R&D",
-    body: "Custom in-house pipelines for teams who want to make work, not wait for one perfect render.",
+    body: "In-house tooling for teams who'd rather make work than wait for renders.",
   },
 ];
 
 export default function AboutPage() {
   return (
-    <article className="pb-32">
+    <article className="pb-24 md:pb-32">
       {/* Big statement */}
-      <section className="mx-auto max-w-5xl px-6 pt-32 pb-12 lg:px-10">
-        <p className="font-mono text-xs uppercase tracking-[0.22em] text-muted-foreground">
-          Abhiraj Singh — AI Filmmaker, India
+      <section className="mx-auto max-w-5xl px-6 pt-24 pb-10 md:pt-32 md:pb-12 lg:px-10">
+        <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground md:text-xs">
+          Abhiraj Singh — AI Filmmaker
         </p>
-        <h1 className="mt-6 font-display text-[clamp(2.4rem,7vw,6rem)] leading-[0.95] tracking-tight text-balance">
+        <h1 className="mt-5 font-display text-[clamp(2.2rem,8vw,6rem)] leading-[0.95] tracking-tight text-balance md:mt-6">
           I make films
           <span className="italic text-muted-foreground"> that didn&rsquo;t exist </span>
           a second ago.
         </h1>
-        <p className="mt-8 max-w-2xl text-lg text-muted-foreground text-pretty md:text-xl">
-          My practice sits at the seam of generative models and old-fashioned
-          craft — frame composition, sound, rhythm, the cut. The tools are new;
-          the discipline is the same one that has been there since the first
-          edit suite.
+        <p className="mt-6 max-w-xl text-base text-muted-foreground text-pretty md:mt-8 md:text-lg">
+          New tools. Old discipline.
         </p>
       </section>
 
       {/* Big quote */}
-      <section className="mx-auto max-w-5xl border-y border-border bg-foreground/[0.02] px-6 py-20 lg:px-10">
-        <p className="font-display text-3xl leading-tight tracking-tight text-balance md:text-5xl">
+      <section className="mx-auto max-w-5xl border-y border-border bg-foreground/[0.02] px-6 py-14 md:py-20 lg:px-10">
+        <p className="font-display text-2xl leading-tight tracking-tight text-balance md:text-5xl">
           “The model gives you a thousand frames.
           <br />
           <span className="italic text-muted-foreground">
@@ -90,25 +87,25 @@ export default function AboutPage() {
       </section>
 
       {/* Services */}
-      <section className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
-        <div className="flex items-end justify-between gap-8">
+      <section className="mx-auto max-w-7xl px-6 py-16 md:py-24 lg:px-10">
+        <div className="flex items-end justify-between gap-6">
           <h2 className="font-display text-3xl tracking-tight md:text-5xl">
             What I make.
           </h2>
           <p className="hidden text-sm text-muted-foreground md:block">
-            Briefs, decks and weird ideas equally welcome.
+            Briefs and weird ideas welcome.
           </p>
         </div>
-        <div className="mt-12 grid gap-px overflow-hidden rounded-2xl bg-border md:grid-cols-2">
+        <div className="mt-10 grid gap-px overflow-hidden rounded-2xl bg-border md:mt-12 md:grid-cols-2">
           {SERVICES.map((s) => (
             <div
               key={s.title}
-              className="bg-background p-8 transition-colors hover:bg-foreground/[0.03]"
+              className="bg-background p-6 transition-colors hover:bg-foreground/[0.03] md:p-8"
             >
-              <h3 className="font-display text-2xl tracking-tight md:text-3xl">
+              <h3 className="font-display text-xl tracking-tight md:text-3xl">
                 {s.title}
               </h3>
-              <p className="mt-3 max-w-md text-pretty text-muted-foreground">
+              <p className="mt-2 max-w-md text-sm text-pretty text-muted-foreground md:mt-3 md:text-base">
                 {s.body}
               </p>
             </div>
@@ -117,11 +114,11 @@ export default function AboutPage() {
       </section>
 
       {/* Tool stack */}
-      <section className="mx-auto max-w-7xl px-6 py-16 lg:px-10">
+      <section className="mx-auto max-w-7xl px-6 py-12 md:py-16 lg:px-10">
         <h2 className="font-display text-3xl tracking-tight md:text-5xl">
           The stack.
         </h2>
-        <div className="mt-12 grid gap-12 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 grid gap-10 sm:grid-cols-2 md:mt-12 md:gap-12 lg:grid-cols-4">
           {STACK.map((g) => (
             <div key={g.label} className="border-t border-border pt-5">
               <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
@@ -140,25 +137,25 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="mx-auto max-w-5xl px-6 py-28 text-center lg:px-10">
-        <p className="font-mono text-xs uppercase tracking-[0.22em] text-muted-foreground">
+      <section className="mx-auto max-w-5xl px-6 py-20 text-center md:py-28 lg:px-10">
+        <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground md:text-xs">
           Now booking — 2026
         </p>
-        <h2 className="mt-6 font-display text-[clamp(2rem,6vw,5rem)] leading-[1.02] tracking-tight text-balance">
+        <h2 className="mt-5 font-display text-[clamp(2rem,7vw,5rem)] leading-[1.02] tracking-tight text-balance md:mt-6">
           Have a story
           <span className="italic text-muted-foreground"> that needs the cut?</span>
         </h2>
-        <div className="mt-10 flex flex-wrap justify-center gap-3">
+        <div className="mt-8 flex flex-wrap justify-center gap-3 md:mt-10">
           <a
             href="mailto:usaabhiraj2@gmail.com"
-            className="inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-transform hover:scale-[1.02]"
+            className="inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-medium text-background transition-transform hover:scale-[1.02] md:px-6"
           >
             Email me
             <span aria-hidden>↗</span>
           </a>
           <Link
             href="/"
-            className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-medium text-foreground transition-colors hover:bg-foreground/5"
+            className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-3 text-sm font-medium text-foreground transition-colors hover:bg-foreground/5 md:px-6"
           >
             See the work
           </Link>

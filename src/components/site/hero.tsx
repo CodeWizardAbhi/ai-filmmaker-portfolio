@@ -8,7 +8,6 @@ import { videoUrl } from "@/lib/media";
 
 const ROTATING_LINES = [
   "Generative cinema.",
-  "Edited like it's sacred.",
   "Models render. The cut decides.",
   "Latent space, sharpened.",
 ];
@@ -150,7 +149,7 @@ export function Hero({ work }: { work: Work }) {
             )}
           </h1>
 
-          {/* Cycling tagline */}
+          {/* Cycling tagline — single line, no static duplicate below */}
           <div className="relative mt-6 h-7 max-w-xl overflow-hidden md:h-8">
             {ROTATING_LINES.map((t, i) => (
               <span
@@ -173,11 +172,7 @@ export function Hero({ work }: { work: Work }) {
             ))}
           </div>
 
-          <p className="mt-4 max-w-xl text-sm text-white/55 text-pretty">
-            {work.tagline}
-          </p>
-
-          <div className="mt-8 flex flex-wrap items-center gap-3">
+          <div className="mt-7 flex flex-wrap items-center gap-3">
             <Link
               href={`/work/${work.slug}`}
               className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-white px-5 py-2.5 text-sm font-medium text-black transition-transform hover:scale-[1.03] active:scale-[0.98]"

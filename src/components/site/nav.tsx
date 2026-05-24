@@ -28,25 +28,25 @@ export function Nav() {
           : "bg-transparent"
       }`}
     >
-      <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:px-10">
+      <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-2 px-4 sm:gap-3 sm:px-6 lg:px-10">
         <Link
           href="/"
-          className="group flex items-center gap-3 text-sm font-medium tracking-tight"
+          className="group flex min-w-0 items-center gap-2.5 text-sm font-medium tracking-tight sm:gap-3"
           aria-label="Abhiraj Singh — home"
         >
-          <span className="relative inline-flex h-2.5 w-2.5">
+          <span className="relative inline-flex h-2.5 w-2.5 shrink-0">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--accent)] opacity-60" />
             <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[var(--accent)]" />
           </span>
-          <span className="font-display text-base tracking-tight">
+          <span className="whitespace-nowrap font-display text-[15px] tracking-tight sm:text-base">
             Abhiraj Singh
           </span>
-          <span className="hidden text-xs uppercase tracking-[0.18em] text-muted-foreground sm:inline">
+          <span className="hidden whitespace-nowrap text-xs uppercase tracking-[0.18em] text-muted-foreground md:inline">
             AI Filmmaker
           </span>
         </Link>
 
-        <ul className="flex items-center gap-1 text-sm">
+        <ul className="flex shrink-0 items-center gap-0.5 text-sm sm:gap-1">
           {NAV.map((item) => {
             const active =
               item.href === "/"
@@ -56,7 +56,7 @@ export function Nav() {
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className={`relative rounded-full px-3 py-1.5 transition-colors ${
+                  className={`relative rounded-full px-2.5 py-1.5 transition-colors sm:px-3 ${
                     active
                       ? "text-foreground"
                       : "text-muted-foreground hover:text-foreground"
@@ -64,18 +64,20 @@ export function Nav() {
                 >
                   {item.label}
                   {active && (
-                    <span className="absolute inset-x-3 -bottom-0.5 h-px bg-foreground/70" />
+                    <span className="absolute inset-x-2.5 -bottom-0.5 h-px bg-foreground/70 sm:inset-x-3" />
                   )}
                 </Link>
               </li>
             );
           })}
-          <li className="ml-2">
+          <li className="ml-1 sm:ml-2">
             <a
               href="mailto:usaabhiraj2@gmail.com"
-              className="inline-flex items-center gap-2 rounded-full border border-border bg-foreground/5 px-3.5 py-1.5 text-xs font-medium tracking-wide text-foreground transition-colors hover:bg-foreground hover:text-background"
+              className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border border-border bg-foreground/5 px-3 py-1.5 text-xs font-medium tracking-wide text-foreground transition-colors hover:bg-foreground hover:text-background sm:gap-2 sm:px-3.5"
+              aria-label="Get in touch via email"
             >
-              Get in touch
+              <span className="hidden sm:inline">Get in touch</span>
+              <span className="sm:hidden">Hire</span>
               <span aria-hidden>→</span>
             </a>
           </li>
