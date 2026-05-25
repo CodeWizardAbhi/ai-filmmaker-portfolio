@@ -45,16 +45,14 @@ export function WorkCard({ work, index, priority = false }: Props) {
       className="group relative block w-full transition-transform duration-500 hover:-translate-y-0.5 focus-visible:outline-none"
       aria-label={`${work.title} — ${work.category}`}
     >
-      {/* Editorial top strip: index · category · year — outside the frame, like print captions */}
-      <div className="mb-2.5 flex items-baseline justify-between gap-2 font-mono text-[9px] uppercase tracking-[0.22em] text-muted-foreground md:mb-3 md:text-[10px] md:tracking-[0.28em]">
-        <span className="flex min-w-0 items-baseline gap-2 md:gap-3">
-          <span className="text-foreground/80">
-            {String(index).padStart(2, "0")}
-          </span>
-          <span className="h-px w-4 translate-y-[-3px] bg-border md:w-5" />
-          <span className="truncate">{work.category}</span>
+      {/* Editorial top strip: index · category — like print captions.
+          Year removed; redundant when everything is 2026. */}
+      <div className="mb-2.5 flex items-baseline gap-2 font-mono text-[9px] uppercase tracking-[0.22em] text-muted-foreground md:mb-3 md:gap-3 md:text-[10px] md:tracking-[0.28em]">
+        <span className="text-foreground/80">
+          {String(index).padStart(2, "0")}
         </span>
-        <span className="shrink-0">{work.year}</span>
+        <span className="h-px w-4 translate-y-[-3px] bg-border md:w-5" />
+        <span className="truncate">{work.category}</span>
       </div>
 
       <div

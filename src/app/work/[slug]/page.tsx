@@ -36,30 +36,42 @@ export default async function WorkPage({ params }: Params) {
 
   return (
     <article className="pb-24 md:pb-32">
-      {/* Title block */}
-      <header className="mx-auto max-w-7xl px-6 pt-24 pb-8 md:pt-28 md:pb-10 lg:px-10">
-        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] uppercase tracking-[0.22em] text-muted-foreground md:text-xs">
+      {/* Tight title block — single compact strip so the video lands
+          inside the viewport on page load instead of forcing a scroll. */}
+      <header className="mx-auto max-w-7xl px-6 pt-20 pb-4 md:pt-24 md:pb-6 lg:px-10">
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[10px] uppercase tracking-[0.28em] text-muted-foreground md:text-[11px]">
           <Link href="/" className="hover:text-foreground">
             Work
           </Link>
           <span aria-hidden>/</span>
           <span className="truncate">{work.category}</span>
         </div>
-        <h1 className="mt-5 font-display text-[clamp(2.2rem,9vw,6rem)] leading-[0.95] tracking-tight text-balance md:mt-6">
-          {work.title}
-        </h1>
-        <p className="mt-4 max-w-2xl text-base text-muted-foreground text-pretty md:text-lg">
-          {work.tagline}
-        </p>
+        <div className="mt-3 flex flex-col gap-2 md:mt-4 md:flex-row md:items-end md:justify-between md:gap-8">
+          <h1 className="font-display text-[clamp(1.9rem,5vw,3.4rem)] leading-[0.98] tracking-tight text-balance">
+            {work.title}
+          </h1>
+          <p className="max-w-md text-sm italic text-muted-foreground text-pretty md:text-base md:text-right">
+            {work.tagline}
+          </p>
+        </div>
       </header>
 
-      {/* Player */}
+      {/* Player — capped at ~72svh so it fits the viewport on any common
+          screen without scrolling. Container width derives from min of
+          (parent width, height-derived width) so aspect ratio is honored
+          but height never overshoots. */}
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <div
+          style={{
+            width:
+              work.orientation === "vertical"
+                ? "min(100%, 420px, calc(72svh * 9 / 16))"
+                : "min(100%, calc(72svh * 16 / 9))",
+          }}
           className={`relative mx-auto overflow-hidden rounded-2xl bg-black ring-1 ring-white/5 ${
             work.orientation === "vertical"
-              ? "aspect-[9/16] max-w-[420px]"
-              : "aspect-video w-full"
+              ? "aspect-[9/16]"
+              : "aspect-video"
           }`}
         >
           <video

@@ -1,7 +1,6 @@
 import { Hero } from "@/components/site/hero";
 import { WorkGrid } from "@/components/site/work-grid";
 import { ShowcaseWall } from "@/components/site/showcase-wall";
-import { Reveal } from "@/components/site/reveal";
 import { featuredWork, works } from "@/lib/works";
 
 export default function HomePage() {
@@ -10,15 +9,13 @@ export default function HomePage() {
   return (
     <>
       <Hero work={featuredWork} />
-
-      <Reveal>
-        <ShowcaseWall />
-      </Reveal>
-
+      {/* No <Reveal> wrappers on the below-the-fold sections. They were
+          triggering opacity:0 → fade-in only after scroll crossed a
+          threshold, which read as a black gap between the showcase wall
+          and the work grid. Content now renders immediately. */}
+      <ShowcaseWall />
       <section className="mx-auto w-full max-w-7xl px-6 pt-12 pb-16 md:pt-20 md:pb-24 lg:px-10">
-        <Reveal delay={120}>
-          <WorkGrid works={rest} />
-        </Reveal>
+        <WorkGrid works={rest} />
       </section>
     </>
   );
