@@ -111,15 +111,7 @@ export function Hero({ work }: { work: Work }) {
         }}
       />
 
-      <div className="relative z-20 mx-auto flex h-full max-w-7xl flex-col justify-between px-6 pt-24 pb-14 md:pt-28 lg:px-10">
-        <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.28em] text-white/70 md:text-[11px]">
-          <span className="relative inline-flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--accent)] opacity-75" />
-            <span className="relative inline-block h-2 w-2 rounded-full bg-[var(--accent)]" />
-          </span>
-          {work.category} · {work.year}
-        </div>
-
+      <div className="relative z-20 mx-auto flex h-full max-w-7xl flex-col justify-end px-6 pt-24 pb-14 md:pt-28 lg:px-10">
         <div className="max-w-4xl">
           <h1 className="font-display text-[clamp(2.6rem,9vw,7rem)] leading-[0.92] tracking-tight text-balance text-white">
             {work.title.split("—")[0].trim()}
