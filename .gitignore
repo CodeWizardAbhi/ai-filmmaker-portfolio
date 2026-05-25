@@ -46,3 +46,6 @@ next-env.d.ts
 /public/videos/
 /scripts/compress.log
 /scripts/showcase.log
+
+# CV is a regenerable build artifact (run scripts/build-cv.sh)
+/cv/*.pdf
