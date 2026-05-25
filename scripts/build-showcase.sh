@@ -44,11 +44,13 @@ for entry in "${ENTRIES[@]}"; do
 
   echo "  - $slug" | tee -a "$LOG"
 
-  # Normalized version (silent, uniform encode) — also used for web playback.
+  # Normalized version (uniform encode + AAC audio) — also used for web
+  # playback in the lightbox. Audio is kept (44.1 → 48k AAC stereo) so
+  # the showcase clips and the concatenated showcase-reel have sound.
   ffmpeg -y -i "$src_path" \
     -vf "scale=1280:720:force_original_aspect_ratio=decrease,pad=1280:720:(ow-iw)/2:(oh-ih)/2:color=black,fps=24,format=yuv420p" \
     -c:v libx264 -preset fast -crf 22 -profile:v high \
-    -an \
+    -c:a aac -b:a 128k -ar 48000 -ac 2 \
     -movflags +faststart \
     "$norm_path" >>"$LOG" 2>&1
 
