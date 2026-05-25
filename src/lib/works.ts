@@ -76,7 +76,7 @@ export const works: Work[] = [
   },
   {
     slug: "african-heat-ep1",
-    title: "African Heat — Ep. 1",
+    title: "African Heat",
     category: "Vertical Drama",
     year: 2026,
     durationSec: 122,

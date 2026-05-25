@@ -40,24 +40,13 @@ export function ShowcaseWall() {
 
   return (
     <section className="relative mx-auto w-full max-w-7xl px-6 pt-16 pb-12 md:pt-20 lg:px-10">
-      <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between md:gap-8">
-        <div>
-          <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-muted-foreground md:text-[11px]">
-            Showcase
-          </p>
-          <h2 className="mt-3 font-display text-[clamp(1.9rem,6vw,3.4rem)] leading-[1.02] tracking-tight text-balance">
-            kool shyt.
-          </h2>
-        </div>
-        <a
-          href={videoUrl("/videos/showcase-reel.mp4")}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex w-fit items-center gap-2 whitespace-nowrap rounded-full border border-border bg-foreground/5 px-4 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-foreground hover:text-background"
-        >
-          Play full reel
-          <span aria-hidden>↗</span>
-        </a>
+      <div>
+        <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-muted-foreground md:text-[11px]">
+          Showcase
+        </p>
+        <h2 className="mt-3 font-display text-[clamp(1.9rem,6vw,3.4rem)] leading-[1.02] tracking-tight text-balance">
+          my Seedance dump.
+        </h2>
       </div>
 
       <div className="mt-10 grid grid-cols-2 gap-2 sm:gap-3 md:grid-cols-3 lg:grid-cols-5">
@@ -166,7 +155,7 @@ function ShowcaseLightbox({
   onShuffle: () => void;
 }) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  const [mutedFallback, setMutedFallback] = useState(false);
+  const [soundOn, setSoundOn] = useState(true);
   const isOpen = index !== null;
   const clip = isOpen ? clips[index] : null;
 
@@ -193,29 +182,30 @@ function ShowcaseLightbox({
     };
   }, [isOpen, onClose, onShuffle]);
 
-  // Try to play unmuted; fall back to muted if the browser blocks autoplay
-  // with sound (rare since the user just clicked, but iOS Safari can be
-  // finicky about cross-origin video + audio).
+  // Try unmuted first; if the browser blocks (iOS Safari can refuse audio
+  // even after a click on a different element), silently fall back to muted
+  // — the sound toggle is always visible so the user can flip it in one tap.
   useEffect(() => {
     if (!isOpen || !clip) return;
     const v = videoRef.current;
     if (!v) return;
-    setMutedFallback(false);
     v.muted = false;
     v.volume = 1;
+    setSoundOn(true);
     void v.play().catch(() => {
       v.muted = true;
-      setMutedFallback(true);
+      setSoundOn(false);
       v.play().catch(() => {});
     });
   }, [isOpen, clip]);
 
-  const unmute = () => {
+  const toggleSound = () => {
     const v = videoRef.current;
     if (!v) return;
-    v.muted = false;
-    v.volume = 1;
-    setMutedFallback(false);
+    const next = !soundOn;
+    v.muted = !next;
+    if (next) v.volume = 1;
+    setSoundOn(next);
     void v.play().catch(() => {});
   };
 
@@ -258,20 +248,30 @@ function ShowcaseLightbox({
             className="absolute inset-0 h-full w-full object-cover"
           />
 
-          {/* Unmute affordance — only renders if browser silenced autoplay */}
-          {mutedFallback && (
-            <button
-              type="button"
-              onClick={unmute}
-              className="absolute left-4 bottom-4 inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/60 px-3 py-1.5 text-[11px] font-mono uppercase tracking-[0.22em] text-white backdrop-blur transition-colors hover:bg-white hover:text-black"
-              aria-label="Unmute"
-            >
-              <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="currentColor" aria-hidden>
-                <path d="M3 10v4a1 1 0 0 0 1 1h3l5 4V5L7 9H4a1 1 0 0 0-1 1Zm14.5 2a4.5 4.5 0 0 0-1.32-3.18l-1.06 1.06A3 3 0 0 1 16 12a3 3 0 0 1-.88 2.12l1.06 1.06A4.5 4.5 0 0 0 17.5 12Z" />
+          {/* Sound toggle — always visible. Defaults to ON when the browser
+              allows, OFF when the browser blocks unmuted autoplay (iOS).
+              Either way, one tap flips it. */}
+          <button
+            type="button"
+            onClick={toggleSound}
+            aria-label={soundOn ? "Mute" : "Unmute"}
+            aria-pressed={soundOn}
+            className="absolute left-3 bottom-3 inline-flex h-9 items-center gap-2 rounded-full border border-white/25 bg-black/55 pl-2.5 pr-3.5 text-[11px] font-mono uppercase tracking-[0.22em] text-white backdrop-blur transition-colors hover:bg-white hover:text-black md:left-4 md:bottom-4"
+          >
+            {soundOn ? (
+              <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor" aria-hidden>
+                <path d="M3 10v4a1 1 0 0 0 1 1h3l5 4V5L7 9H4a1 1 0 0 0-1 1Z" />
+                <path d="M15.5 8.5a4.5 4.5 0 0 1 0 7l-1.06-1.06a3 3 0 0 0 0-4.88L15.5 8.5Z" />
+                <path d="M17.7 5.3a8 8 0 0 1 0 13.4l-1.05-1.06a6.5 6.5 0 0 0 0-11.28L17.7 5.3Z" />
               </svg>
-              Tap to unmute
-            </button>
-          )}
+            ) : (
+              <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor" aria-hidden>
+                <path d="M3 10v4a1 1 0 0 0 1 1h3l5 4V5L7 9H4a1 1 0 0 0-1 1Z" />
+                <path fillRule="evenodd" d="m14.59 9-.7.71L15.18 11l-1.3 1.29.71.71L15.88 11.7l1.3 1.3.7-.71L16.6 11l1.3-1.29-.7-.71-1.3 1.29L14.6 9Z" />
+              </svg>
+            )}
+            {soundOn ? "Sound" : "Muted"}
+          </button>
         </div>
 
         <div className="mt-3 flex items-center justify-between gap-4 font-mono text-[10px] uppercase tracking-[0.28em] text-white/65 md:mt-4">
